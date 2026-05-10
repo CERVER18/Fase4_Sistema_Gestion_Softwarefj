@@ -1,60 +1,91 @@
-# Software FJ — SISTEMA INTEGRAL DE GESTION DE CLIENTES, SERVICIOS Y RESERVAS
+# 🚀 Software FJ — Sistema Integral de Gestión de Clientes, Servicios y Reservas
 
-Sistema orientado a objetos desarrollado en Python para la gestión de clientes, servicios y reservas de la empresa Software FJ. Proyecto académico del curso **Programación Orientada a Objetos (Código 213023)** — Universidad Nacional Abierta y a Distancia (UNAD).
+<div align="center">
 
----
+![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python)
+![POO](https://img.shields.io/badge/Programación-Orientada%20a%20Objetos-success?style=for-the-badge)
+![UNAD](https://img.shields.io/badge/UNAD-213023-orange?style=for-the-badge)
+![Estado](https://img.shields.io/badge/Estado-Funcional-brightgreen?style=for-the-badge)
 
-## 📋 Descripción general
-El sistema permite registrar clientes, gestionar un catálogo de servicios (salas, equipos y asesorías) y administrar reservas con un ciclo de vida completo. Toda la información se mantiene en memoria mediante objetos y listas, sin uso de base de datos. Los errores y eventos se registran automáticamente en un archivo de logs.
+### Sistema desarrollado en Python aplicando Programación Orientada a Objetos
+### Gestión de clientes, servicios y reservas para Software FJ
 
----
-
-## 🧠 Principios de Programación Orientada a Objetos aplicados
-* **Abstracción:** Implementación de clases abstractas `EntidadSistema` y `Servicio` que definen la estructura base.
-* **Herencia:** Clases `Cliente`, `ReservaSala`, `AlquilerEquipo` y `AsesoriaEspecializada` heredan de las clases base.
-* **Polimorfismo y Sobrecarga:** Cada servicio calcula su costo de forma diferente usando el mismo método `calcular_costo()`. La sobrecarga se logró implementando `**kwargs`.
-* **Encapsulación:** Atributos protegidos y privados (`__nombre`, `__email`) con validación a través de *Getters* y *Setters*.
-* **Manejo avanzado de excepciones:** Excepciones personalizadas, bloques `try/except/else/finally`, y encadenamiento de excepciones (`raise ... from`) para garantizar la estabilidad operativa.
+</div>
 
 ---
 
-## 🌳 Jerarquía de Clases del Sistema
+# 📋 Descripción General
+
+Este proyecto implementa un sistema integral orientado a objetos para la gestión de:
+
+- 👤 Clientes
+- 🛠️ Servicios especializados
+- 📅 Reservas
+- ⚠️ Manejo avanzado de excepciones
+- 📝 Registro automático de logs
+
+El sistema fue desarrollado sin utilizar bases de datos, empleando exclusivamente:
+
+- Objetos
+- Listas
+- Archivos de texto para auditoría y logs
+
+El proyecto corresponde al curso:
+
+> **Programación Orientada a Objetos (Código 213023)**  
+> Universidad Nacional Abierta y a Distancia — UNAD
+
+---
+
+# 🎯 Objetivo del Proyecto
+
+Desarrollar una aplicación modular, estable y extensible capaz de continuar funcionando incluso cuando ocurren errores durante la ejecución.
+
+El sistema implementa rigurosamente:
+
+- Abstracción
+- Herencia
+- Polimorfismo
+- Encapsulación
+- Manejo avanzado de excepciones
+
+---
+
+# 🧠 Principios de Programación Orientada a Objetos Aplicados
+
+| Principio | Aplicación en el sistema |
+|---|---|
+| 🔹 Abstracción | Clases abstractas `EntidadBase` y `Servicio` |
+| 🔹 Herencia | `Cliente`, `ReservaSala`, `AlquilerEquipo` y `AsesoriaEspecializada` heredan de clases base |
+| 🔹 Polimorfismo | Cada servicio redefine `calcular_costo()` |
+| 🔹 Encapsulación | Uso de atributos privados y validaciones mediante getters/setters |
+| 🔹 Sobrescritura | Métodos redefinidos en clases derivadas |
+| 🔹 Sobrecarga | Parámetros opcionales mediante `*args` y `**kwargs` |
+| 🔹 Manejo de excepciones | Uso de `try/except/else/finally` y excepciones personalizadas |
+
+---
+
+# 🏗️ Arquitectura del Sistema
 
 ```text
-EntidadSistema (abstracta)
+EntidadBase (Clase Abstracta)
+│
 ├── Cliente
-└── Servicio (abstracta)
+│
+└── Servicio (Clase Abstracta)
+    │
     ├── ReservaSala
     ├── AlquilerEquipo
     └── AsesoriaEspecializada
 
-Clases Gestoras:
+Gestión:
+│
 ├── Reserva
 └── Gestor
 
-Excepciones (Manejo de Errores):
+Jerarquía de Excepciones:
+│
 Exception
 └── SoftwareFJError
-    ├── ErrorValidacion (Fallas en reglas de negocio ej. Email sin @)
-    └── ErrorOperativo  (Fallas en tiempo de ejecución o cálculos)
-
-
----
-
-## 📂 Estructura Modular del Proyecto
-El código se desarrolló en una arquitectura de 9 módulos:
-
-```text
-sistema-gestion-softwarefj/
-│
-├── excepciones.py    # Módulo 1 - Excepciones jerárquicas del sistema
-├── logger.py         # Módulo 2 - Sistema de registro de eventos (Logs)
-├── entidad_base.py   # Módulo 3 - Clase abstracta base
-├── cliente.py        # Módulo 4 - Cliente con encapsulación estricta
-├── servicios.py      # Módulo 5 - Servicios con herencia y polimorfismo
-├── reserva.py        # Módulo 6 - Ciclo de vida y try/except/else/finally
-├── gestor.py         # Módulo 7 - Manejo de listas internas
-├── main.py           # Módulo 8 - Simulación de 10 operaciones secuenciales
-├── interfaz.py       # Módulo 9 - Interfaz gráfica interactiva (Tkinter)
-└── logs/
-    └── sistema_fj.log # Archivo generado automáticamente con los errores
+    ├── ErrorValidacion
+    └── ErrorOperativo
