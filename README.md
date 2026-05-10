@@ -92,8 +92,8 @@ Exception
 
 ---
 
-#  Estructura del proyecto 
-
+##  Estructura del proyecto 
+```text
 sistema-gestion-softwarefj/
 │
 ├── excepciones.py
