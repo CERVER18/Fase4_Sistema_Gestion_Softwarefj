@@ -286,12 +286,8 @@ Demostrando que la aplicación permanece estable incluso ante errores críticos.
 # 📸 Vista del Proyecto
 
 
-```markdown
-
 <img width="603" height="735" alt="Captura de pantalla 2026-05-10 030816" src="https://github.com/user-attachments/assets/d9e9efc7-37f0-4939-8ef6-a617fdf49413" />
 
-
-```
 
 ---
 
