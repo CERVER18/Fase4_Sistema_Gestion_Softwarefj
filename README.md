@@ -31,5 +31,6 @@ sistema-gestion-softwarefj/
 ├── reserva.py        # Módulo 6 - Ciclo de vida y try/except/else/finally
 ├── gestor.py         # Módulo 7 - Manejo de listas internas
 ├── main.py           # Módulo 8 - Simulación de 10 operaciones secuenciales
+├── interfaz.py       # Módulo 9 - Interfaz gráfica interactiva (Tkinter)
 └── logs/
     └── sistema_fj.log # Archivo generado automáticamente con los errores
