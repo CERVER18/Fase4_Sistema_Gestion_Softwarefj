@@ -18,6 +18,29 @@ El sistema permite registrar clientes, gestionar un catálogo de servicios (sala
 
 ---
 
+## 🌳 Jerarquía de Clases del Sistema
+
+```text
+EntidadSistema (abstracta)
+├── Cliente
+└── Servicio (abstracta)
+    ├── ReservaSala
+    ├── AlquilerEquipo
+    └── AsesoriaEspecializada
+
+Clases Gestoras:
+├── Reserva
+└── Gestor
+
+Excepciones (Manejo de Errores):
+Exception
+└── SoftwareFJError
+    ├── ErrorValidacion (Fallas en reglas de negocio ej. Email sin @)
+    └── ErrorOperativo  (Fallas en tiempo de ejecución o cálculos)
+
+
+---
+
 ## 📂 Estructura Modular del Proyecto
 El código se desarrolló en una arquitectura de 9 módulos:
 
