@@ -1,9 +1,24 @@
-2026-05-10 10:15:01 | INFO | Cliente añadido a la lista: Juan Perez
-2026-05-10 10:15:02 | INFO | Reserva 101 exitosa. Monto: $290000
-2026-05-10 10:15:02 | ERROR | Fallo operativo en la reserva 102: Formato de correo inválido: maria.com
-2026-05-10 10:15:03 | INFO | Cliente añadido a la lista: Carlos Ruiz
-2026-05-10 10:15:03 | INFO | Reserva 103 exitosa. Monto: $250000
-2026-05-10 10:15:04 | ERROR | Fallo operativo en la reserva 104: El descuento no puede ser mayor al costo total.
-2026-05-10 10:15:04 | ERROR | Error crítico inesperado: unsupported operand type(s) for *: 'int' and 'str'
-2026-05-10 10:15:05 | WARNING | Operación 107 abortada por seguridad.
-2026-05-10 10:15:06 | INFO | Reserva 109 exitosa. Monto: $400000
+2026-05-10 10:15:01 | INFO    | Cliente añadido a la lista: Patricia Meneses
+2026-05-10 10:15:01 | INFO    | Reserva 101 confirmada correctamente. Monto: $290000
+
+2026-05-10 10:15:02 | ERROR   | Error de validación en operación 102: Formato de correo inválido: ricardo.com
+
+2026-05-10 10:15:03 | ERROR   | Error de validación en operación 103: El nombre debe tener al menos 2 caracteres.
+
+2026-05-10 10:15:04 | INFO    | Cliente añadido a la lista: Carlos Ruiz
+2026-05-10 10:15:04 | INFO    | Reserva 104 confirmada correctamente. Monto: $250000
+
+2026-05-10 10:15:05 | ERROR   | Fallo operativo en reserva 105: El descuento no puede ser mayor al costo total.
+
+2026-05-10 10:15:06 | ERROR   | Error crítico en operación 106: unsupported operand type(s) for *: 'int' and 'str'
+
+2026-05-10 10:15:07 | INFO    | Cliente añadido a la lista: Dora Martinez
+2026-05-10 10:15:07 | INFO    | Reserva 107 confirmada correctamente. Monto: $180000
+
+2026-05-10 10:15:08 | WARNING | Operación 108 cancelada: Servicio no disponible.
+
+2026-05-10 10:15:09 | INFO    | Cliente añadido a la lista: Sofia Lopez
+2026-05-10 10:15:09 | INFO    | Reserva 109 confirmada correctamente. Monto: $400000
+
+2026-05-10 10:15:10 | INFO    | Cliente añadido a la lista: Raul Garcia
+2026-05-10 10:15:10 | INFO    | Reserva 110 confirmada correctamente. Monto: $517500
