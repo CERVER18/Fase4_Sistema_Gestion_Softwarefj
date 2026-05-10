@@ -1,42 +1,54 @@
-from logger import registrar_log
 from excepciones import ErrorOperativo
+from logger import registrar
 
 class Reserva:
-    def __init__(self, id_reserva, cliente, servicio, duracion):
-        self.id_reserva = id_reserva
+    def __init__(self, id_res, cliente, servicio, duracion):
+        self.id_res = id_res
         self.cliente = cliente
         self.servicio = servicio
         self.duracion = duracion
         self.estado = "PENDIENTE"
 
-    def confirmar(self, **parametros_extra):
-        print(f"\n--- Procesando Reserva #{self.id_reserva} ---")
+    def confirmar(self, **opciones):
+        print(f"\n--- Procesando Reserva #{self.id_res} ---")
         try:
-            if self.servicio is None or self.cliente is None:
-                raise ErrorOperativo("Faltan datos (Cliente o Servicio nulo).")
+            # 1. Validación de datos faltantes
+            if not self.servicio or not self.cliente:
+                raise ErrorOperativo("Datos incompletos: Cliente o Servicio nulo.")
             
-            # Llamada polimórfica
-            costo = self.servicio.calcular_costo(self.duracion, **parametros_extra)
+            # 2. Llamada polimórfica
+            costo = self.servicio.calcular_costo(self.duracion, **opciones)
             
-        except (ValueError, TypeError, ErrorOperativo) as error_interno:
+        except Exception as e:
+            # 3. Manejo de error y encadenamiento (raise from)
             self.estado = "FALLIDA"
-            mensaje_error = f"Fallo operativo en la reserva {self.id_reserva}: {error_interno}"
-            registrar_log(mensaje_error, "error")
-            print(f"❌ ERROR: {error_interno}")
-            # ENCADENAMIENTO DE EXCEPCIONES
-            raise ErrorOperativo("La reserva fue abortada por datos inválidos.") from error_interno
-            
-        except Exception as error_critico:
-            self.estado = "ERROR_SISTEMA"
-            registrar_log(f"Error crítico inesperado: {error_critico}", "critical")
-            print("❌ ERROR CRÍTICO.")
+            registrar(f"Error procesando la reserva {self.id_res}: {e}", "error")
+            print(f"❌ ERROR: {e}")
+            raise ErrorOperativo(f"Fallo crítico en reserva {self.id_res}") from e
             
         else:
+            # 4. Bloque ELSE: Solo se ejecuta si NO hubo errores
             self.estado = "CONFIRMADA"
-            registrar_log(f"Reserva {self.id_reserva} exitosa. Monto: ${costo}")
-            print(f"✅ ÉXITO: {self.servicio.nombre} para {self.cliente.nombre}.")
-            print(f"💰 Total a facturar: ${costo}")
+            registrar(f"Reserva {self.id_res} confirmada. Monto: ${costo}")
+            print(f"✅ ÉXITO: Reserva confirmada. Total a facturar: ${costo}")
             return costo
             
         finally:
-            print(f"📌 Estado final de transacción #{self.id_reserva}: {self.estado}")
+            # 5. Bloque FINALLY: Siempre se ejecuta, haya error o no
+            print(f"📌 Estado actual de la transacción #{self.id_res}: {self.estado}")
+
+    def cancelar(self):
+        """Implementa la cancelación con manejo estricto de excepciones."""
+        print(f"\n--- Solicitud de Cancelación: Reserva #{self.id_res} ---")
+        try:
+            if self.estado == "CONFIRMADA":
+                self.estado = "CANCELADA"
+                registrar(f"Reserva {self.id_res} cancelada exitosamente.", "warning")
+                print(f"⚠️ RESERVA {self.id_res} CANCELADA.")
+            else:
+                raise ErrorOperativo(f"No se puede cancelar. Estado actual: {self.estado}")
+                
+        except ErrorOperativo as e:
+            registrar(f"Intento fallido de cancelación en Reserva {self.id_res}: {e}", "error")
+            print(f"❌ ERROR AL CANCELAR: {e}")
+            raise
