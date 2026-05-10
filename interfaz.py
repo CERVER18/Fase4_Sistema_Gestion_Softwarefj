@@ -3,9 +3,9 @@ from tkinter import ttk, messagebox
 from cliente import Cliente
 from servicios import ReservaSala, AlquilerEquipo
 from reserva import Reserva
-from gestor import Gestor
+from gestor import GestorSistema
 from excepciones import ErrorValidacion, ErrorOperativo
-from logger import registrar
+from logger import registrar_log
 
 class InterfazSoftwareFJ:
     def __init__(self, root):
@@ -15,7 +15,7 @@ class InterfazSoftwareFJ:
         self.root.config(padx=20, pady=20)
         
         # Inicializamos el gestor y un catálogo base de servicios
-        self.gestor = Gestor()
+        self.gestor = GestorSistema()
         self.sala = ReservaSala("SRV-001", "Sala de Juntas VIP", 80000)
         self.equipo = AlquilerEquipo("SRV-002", "Laptop Dell Pro", 45000)
         
@@ -92,7 +92,7 @@ class InterfazSoftwareFJ:
             costo_total = reserva.confirmar(**opciones)
             
             # 4. Guardar en el Gestor
-            self.gestor.guardar(reserva)
+            self.gestor.registrar_operacion(reserva)
 
             # Notificar éxito
             self.log_interfaz(f"✅ ÉXITO: {servicio.nombre} para {cliente.nombre}. Total: ${costo_total}")
