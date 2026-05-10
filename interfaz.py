@@ -10,7 +10,7 @@ from logger import registrar_log
 class InterfazSoftwareFJ:
     def __init__(self, root):
         self.root = root
-        self.root.title("Software FJ - Gestión de Reservas")
+        self.root.title("Software FJ - Sistema Profesional de Reservas  v1.0")
         self.root.geometry("450x500")
         self.root.config(padx=20, pady=20)
         
