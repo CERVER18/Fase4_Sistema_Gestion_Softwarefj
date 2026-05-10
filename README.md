@@ -110,3 +110,5 @@ sistema-gestion-softwarefj/
 │   └── sistema_fj.log
 │
 └── README.md
+```
+
